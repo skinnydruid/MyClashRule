@@ -1,7 +1,7 @@
 我的電視·〇
 視頻源可以设置為地址/文本/文件其中之一
 視頻源地址
-https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
+https://iptv-org.github.io/iptv/index.m3u
 https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
 https://raw.githubusercontent.com/lizongying/my-tv-0/main/app/src/main/res/raw/mobile.txt
 https://raw.githubusercontent.com/lizongying/my-tv-0/main/app/src/main/res/raw/channels.txt
