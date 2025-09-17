@@ -97,7 +97,7 @@ rules:
   - RULE-SET,google_domain,🍀 Google 
   - RULE-SET,google_ip,🍀 Google,no-resolve
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
-  - RULE-SET,Bing,Ⓜ️ 微软Bing
+  - RULE-SET,Binglist,Ⓜ️ 微软Bing
   - RULE-SET,onedrive_domain,Ⓜ️ 微软云盘
   - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
   - RULE-SET,apple_domain,🍎 苹果服务
@@ -144,7 +144,7 @@ rule-providers:
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
-  Bing: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list"}
+  Binglist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list"}
   onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
