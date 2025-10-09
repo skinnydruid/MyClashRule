@@ -13,7 +13,7 @@ proxy-providers:
       interval: 300
     proxy: 直连
   Airport2:
-    url: "https://patriot.ninja/subscribe/1781/ij1LBXUrTwJ/ssr/"
+    url: "https://patriot.ninja/subscribe/1781/MpN1zTcELkS/ssr/"
     type: http
     interval: 86400
     health-check:
