@@ -1,0 +1,279 @@
+# 必读！！！
+# 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
+# 跑裸核用户请自行去掉下方控制面板模块的注释。
+# 机场订阅
+proxy-providers:
+  Airport1:
+    url: "https://patriot.ninja//index.php?m=wray&token=grORRqiISZx1PeAmK3IK4iIH46woeM2Py3bRfbBAP3dZiLicYyYKpYsrqCwID7oX6vbTKFsGOb0%3D"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: http://connectivitycheck.platform.hicloud.com/generate_204
+      interval: 300
+    proxy: 直连
+  Airport2:
+    url: "https://patriot.ninja/subscribe/1781/MpN1zTcELkS/ssr/"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: http://connectivitycheck.platform.hicloud.com/generate_204
+      interval: 300
+    proxy: 直连
+  Airport3:
+    url: "https://sub.bbwwvip.org/subscribe/448507/S9rrUT2u8bk9"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: http://connectivitycheck.platform.hicloud.com/generate_204
+      interval: 300
+    proxy: 直连
+  Airport4:
+    url: "https://xn--cp3a08l.com/api/v1/client/subscribe?token=bb877f1490215e0f784fdf0a2eed1307"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: http://connectivitycheck.platform.hicloud.com/generate_204
+      interval: 300
+    proxy: 直连
+    #override:
+      #additional-prefix: "前缀 |"
+      #additional-suffix: "| 后缀"
+# 节点信息
+proxies:
+  - {name: 直连, type: direct}
+
+# 全局配置 
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+allow-lan: true
+bind-address: "*"
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+log-level: warning
+find-process-mode: 'off'
+# interface-name: en0
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 15
+disable-keep-alive: false
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 控制面板，external-ui 路径如果出现报错，根据你使用的插件进行调整，比如openclash改为： /etc/openclash/run  ，裸核跑改为/etc/mihomo/run
+# 因容易造成新手面板启动问题，我注释掉了，需要的自行开启
+#external-controller: 0.0.0.0:9090
+#secret: ""
+#external-ui: "/etc/nikki/run"
+#external-ui-name: zashboard
+#external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+
+# 嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+.v2ex.com"
+  skip-domain:
+    - "+.baidu.com"
+
+# 入站  
+tun:
+  enable: true
+  # system/gvisor/mixed
+  stack: mixed
+  dns-hijack: ["any:53", "tcp://any:53"]
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:7874
+  ipv6: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "time.*.com"
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29    
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29 
+    - https://223.5.5.5/dns-query
+  # namesever尽量用运营商提供的DNS
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29 
+    - https://223.5.5.5/dns-query
+
+# 出站策略 smart参数 （ uselightgbm: false, collectdata: false, strategy: sticky-sessions,policy-priority: "Premium:0.9;SG:1.3" ）
+# 没有再使用锚点，是考虑很多新手修改难度，这样新手修改某个分组更容易些。
+proxy-groups:
+  - {name: 🚀 节点选择, type: select, proxies: [🔯 故转, ♻️ 自动选择, 直连, 🚀 手动切换, 备用节点, SG备用, JP备用, US备用, 香港节点, 香港IEPL, 狮城节点, 狮城IEPL, 美国节点, 美国IEPL, 日本节点, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点]}
+  - {name: 🚀 手动切换, type: select, include-all: true}  
+  - {name: 香港手动, type: select, include-all: true, filter: "(?i)HKT|HK|Hong Kong|香港"}  
+  - {name: ♻️ 自动选择, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1;HK:1.4;Hong Kong:1.4;SG:1.3;Singapore:1.3", include-all: true, strategy: round-robin, filter: "^((?!(直连|香港|新加坡|日本|东京|美国|芝加哥|洛杉矶|台北|孟买|仁川|伦敦|巴黎|法兰克福|土耳其|流量|套餐|韩国|迪拜|德国|瑞士|澳大利亚|英国|台湾|印度)).)*$"}
+  - {name: 🔯 香港故转, type: fallback, interval: 300, proxies: [香港手动, 香港IEPL, 香港节点, SG备用, JP备用, US备用]}
+  - {name: 🔯 故转, type: fallback, interval: 300, proxies: [🚀 手动切换, ♻️ 自动选择, 备用节点]}
+  - {name: 🔯 游戏故转, type: fallback, interval: 300, proxies: [Game, JP备用, SG备用, 直连]}
+  - {name: 📹 YouTube, type: select, proxies: [🔯 香港故转, 香港IEPL, 香港节点, 直连, US备用, SG备用, JP备用, 🚀 节点选择, ♻️ 自动选择, 狮城节点, 狮城IEPL, 美国节点, 美国IEPL, 日本节点, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 🍀 Google, type: select, proxies: [🔯 香港故转, 香港IEPL, 香港节点, 直连, US备用, SG备用, JP备用, 🚀 节点选择, ♻️ 自动选择, 狮城节点, 狮城IEPL, 美国节点, 美国IEPL, 日本节点, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 🎮 Game, type: select, proxies: [🔯 游戏故转, 直连, Game, US备用, SG备用, JP备用, 🚀 手动切换]}
+  - {name: 🎮 游戏平台, type: select, proxies: [🔯 游戏故转, 直连, Game, US备用, SG备用, JP备用, 🚀 手动切换]}
+  - {name: 🎮 PSN, type: select, proxies: [🔯 游戏故转, 直连, Game, US备用, SG备用, JP备用, 🚀 手动切换]}  
+  - {name: 🎮 Nintendo, type: select, proxies: [🔯 游戏故转, 直连, Game, US备用, SG备用, JP备用, 🚀 手动切换]}  
+  - {name: 🎮 Steam, type: select, proxies: [🔯 游戏故转, 直连, Game, US备用, SG备用, JP备用, 🚀 手动切换]}  
+  - {name: 🎮 Epic, type: select, proxies: [🔯 游戏故转, 直连, Game, US备用, SG备用, JP备用, 🚀 手动切换]}  
+  - {name: 👨🏿‍💻 华为, type: select, proxies: [直连, 香港IEPL, 狮城IEPL, 美国IEPL, 日本节点, 台湾节点, US备用, SG备用, JP备用, 🚀 手动切换]}  
+  - {name: 🤖 OpenAI, type: select, proxies: [GPT节点, 台湾节点, US备用, SG备用, JP备用, 🚀 手动切换]}
+  - {name: 🎥 Netflix, type: select, proxies: [NF节点, US备用, SG备用, JP备用, 🚀 手动切换]}
+  - {name: 🎥 Disney+, type: select, proxies: [Disney节点, 香港IEPL, US备用, SG备用, JP备用, 🚀 手动切换]}
+  - {name: 🐟 漏网之鱼, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 狮城节点, 狮城IEPL, SG备用, 美国节点, 美国IEPL, US备用, 日本节点, JP备用, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 📲 Telegram, type: select, proxies: [🚀 节点选择, 直连, ♻️ 自动选择, 狮城节点, 狮城IEPL, SG备用, 美国节点, 美国IEPL, US备用, 日本节点, JP备用, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 👨🏿‍💻 GitHub, type: select, proxies: [🚀 节点选择, 直连, ♻️ 自动选择, 狮城节点, 狮城IEPL, SG备用, 美国节点, 美国IEPL, US备用, 日本节点, JP备用, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 📺 巴哈姆特, type: select, proxies: [台湾节点, 🚀 节点选择, 🚀 手动切换, 直连]}
+  - {name: 📺 Bilibili, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 狮城节点, 狮城IEPL, SG备用, 美国节点, 美国IEPL, US备用, 日本节点, JP备用, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 🌍 国外媒体, type: select, proxies: [🚀 节点选择, 直连, ♻️ 自动选择, 狮城节点, 狮城IEPL, SG备用, 美国节点, 美国IEPL, US备用, 日本节点, JP备用, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: 🌏 国内媒体, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: Ⓜ️ 微软Bing, type: select, proxies: [🔯 香港故转, 香港IEPL, 香港节点, 直连, 🚀 节点选择, ♻️ 自动选择, 狮城节点, 狮城IEPL, SG备用, 美国节点, 美国IEPL, US备用, 日本节点, JP备用, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点, 🚀 手动切换]}
+  - {name: Ⓜ️ 微软云盘, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: Ⓜ️ 微软服务, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: 🍎 苹果服务, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: 🎯 全球直连, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: 香港节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)HKT|HK|Hong Kong|香港"}
+  - {name: 香港IEPL, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)IEPL SZ-HK|Extreme Hong Kong"}
+  - {name: SG备用, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)新加坡"}
+  - {name: JP备用, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)日本|东京"}
+  - {name: US备用, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)美国|芝加哥|洛杉矶"}
+  - {name: 备用节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)新加坡|日本|东京|美国|芝加哥|洛杉矶|香港"}
+  - {name: 狮城节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
+  - {name: 狮城IEPL, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)IEPL SZ-SG|Extreme Singapore"}
+  - {name: 美国节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)LA|US|USA|美国|芝加哥|洛杉矶"}
+  - {name: 美国IEPL, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)IEPL SZ-US|Extreme USA"}
+  - {name: 日本节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)JP|Japan|日本|东京"}
+  - {name: 台湾节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)台|新北|彰化|TW|Taiwan|Extreme Taiwan"}
+  - {name: Game, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)Gaming"}
+  - {name: 英国节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)UK"}
+  - {name: 德国节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)DE"}
+  - {name: 澳洲节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)Australia"}
+  - {name: 法国节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)France"}
+  - {name: 越南节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)Vietnam"}
+  - {name: GPT节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Singapore:1.2;Taiwan:1.1", include-all: true, strategy: round-robin, filter: "(?i)ChatGPT"}
+  - {name: NF节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Hong Kong:1.2;Singapore:1.1", include-all: true, strategy: round-robin, filter: "(?i)NF HK|NF JP|NF SG|NF TW|NF UK|NF US"}
+  - {name: Disney节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Singapore:1.2;Taiwan:1.1", include-all: true, strategy: round-robin, filter: "(?i)Disney"}
+  - {name: Prime节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Singapore:1.2", include-all: true, strategy: round-robin, filter: "(?i)Prime"}
+
+# 规则匹配
+# 此规则部分没有做防泄露处理，因为弊严重大于利！
+rules:
+  - RULE-SET,Gamelist,🎮 Game
+  - RULE-SET,PSNlist,🎮 PSN
+  - RULE-SET,Epiclist,🎮 Epic
+  - RULE-SET,Originlist,🎮 游戏平台
+  - RULE-SET,Sonylist,🎮 游戏平台
+  - RULE-SET,SteamCNlist,🎯 全球直连
+  - RULE-SET,Steamlist,🎮 Steam
+  - RULE-SET,Nintendolist,🎮 Nintendo
+  - RULE-SET,DisneyPlus,🎥 Disney+
+  - RULE-SET,netflix_domain,🎥 Netflix
+  - RULE-SET,netflix_ip,🎥 Netflix,no-resolve
+  - RULE-SET,Huawei,👨🏿‍💻 华为
+  - RULE-SET,Bahamut,📺 巴哈姆特
+  - RULE-SET,BilibiliHMT,📺 Bilibili
+  - RULE-SET,Bilibililist,📺 Bilibili
+  - RULE-SET,ai,🤖 OpenAI
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - RULE-SET,Binglist,Ⓜ️ 微软Bing
+  - RULE-SET,onedrive_domain,Ⓜ️ 微软云盘
+  - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
+  - RULE-SET,apple_domain,🍎 苹果服务
+  - RULE-SET,Directlite,🎯 全球直连
+  - RULE-SET,LocalAreaNetwor,🎯 全球直连
+  - RULE-SET,UnBan,🎯 全球直连
+  - RULE-SET,GoogleCN,🎯 全球直连
+  - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,google_domain,🍀 Google 
+  - RULE-SET,google_ip,🍀 Google,no-resolve
+  - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,telegram_ip,📲 Telegram,no-resolve
+  - RULE-SET,ChinaMedia,🌏 国内媒体
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+  - RULE-SET,ProxyLite,🚀 节点选择
+  - RULE-SET,gfw_domain,🚀 节点选择
+  - RULE-SET,Download,🎯 全球直连
+  - RULE-SET,Chinalist,🎯 全球直连
+  - RULE-SET,cn_domain,🎯 全球直连
+  - RULE-SET,cn_ip,🎯 全球直连
+  - RULE-SET,geolocation-!cn,🚀 节点选择
+  - MATCH,🐟 漏网之鱼
+
+# 规则集
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+rule-providers: 
+  Gamelist: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/game.list"}
+  PSNlist: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
+  Epiclist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list"}
+  Originlist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list"}
+  Sonylist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Sony.list"}
+  SteamCNlist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list"}
+  Steamlist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list"}
+  Nintendolist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list"}
+  Directlite: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/Direct.list"}
+  ProxyLite: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/ProxyLite.list"}
+  Huawei: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Huawei/Huawei.list"}
+  LocalAreaNetwor: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"}
+  UnBan: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"}
+  GoogleCN: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list"}  
+  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  Binglist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list"}
+  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
+  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  ai: {  <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
+  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  DisneyPlus: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/DisneyPlus.list"}
+  netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
+  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+  Bahamut: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list"}
+  BilibiliHMT: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list"}  
+  Bilibililist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list"}
+  ChinaMedia: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.list"}
+  ProxyMedia: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"}
+  gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  Download: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list"}
+  Chinalist: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.list"}
+  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
