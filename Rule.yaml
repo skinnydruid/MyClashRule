@@ -4,7 +4,7 @@
 # 机场订阅
 proxy-providers:
   Airport1:
-    url: "https://patriot.ninja//index.php?m=wray&token=6lKyZXLFUmxf8Sxoctw%2B6lwYwltBwLmmRG3NjJrb%2BmgCJoyVHj0rUvWGgdJEyrnt88wXz5EGrw8%3D"
+    url: "https://patriot.ninja//index.php?m=wray&token=%2FTxxGtZa1FMj8f%2BROrEpMbZytsZWrnrZ4PJLs%2BbbKZFKS5tO9Fdfz2fiRe632XaQUVGwckNfAXE%3D"
     type: http
     interval: 86400
     health-check:
