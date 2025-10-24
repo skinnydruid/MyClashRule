@@ -4,7 +4,7 @@
 # 机场订阅
 proxy-providers:
   Airport1:
-    url: "https://patriot.ninja//index.php?m=wray&token=grORRqiISZx1PeAmK3IK4iIH46woeM2Py3bRfbBAP3dZiLicYyYKpYsrqCwID7oX6vbTKFsGOb0%3D"
+    url: "https://patriot.ninja//index.php?m=wray&token=6lKyZXLFUmxf8Sxoctw%2B6lwYwltBwLmmRG3NjJrb%2BmgCJoyVHj0rUvWGgdJEyrnt88wXz5EGrw8%3D"
     type: http
     interval: 86400
     health-check:
@@ -13,7 +13,7 @@ proxy-providers:
       interval: 300
     proxy: 直连
   Airport2:
-    url: "https://patriot.ninja/subscribe/1781/MpN1zTcELkS/ssr/"
+    url: "https://patriot.ninja/subscribe/1781/0KlNMGIZ0wC/ssr/"
     type: http
     interval: 86400
     health-check:
@@ -22,7 +22,7 @@ proxy-providers:
       interval: 300
     proxy: 直连
   Airport3:
-    url: "https://sub.bbwwvip.org/subscribe/448507/S9rrUT2u8bk9"
+    url: "https://sub.bbwwvip.org/subscribe/448507/jNfsz2b646DJ"
     type: http
     interval: 86400
     health-check:
@@ -137,7 +137,7 @@ proxy-groups:
   - {name: 🚀 节点选择, type: select, proxies: [🔯 故转, ♻️ 自动选择, 直连, 🚀 手动切换, 备用节点, SG备用, JP备用, US备用, 香港节点, 香港IEPL, 狮城节点, 狮城IEPL, 美国节点, 美国IEPL, 日本节点, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点]}
   - {name: 🚀 手动切换, type: select, include-all: true}  
   - {name: 香港手动, type: select, include-all: true, filter: "(?i)HKT|HK|Hong Kong|香港"}  
-  - {name: ♻️ 自动选择, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1;HK:1.4;Hong Kong:1.4;SG:1.3;Singapore:1.3", include-all: true, strategy: round-robin, filter: "^((?!(直连|香港|新加坡|日本|东京|美国|芝加哥|洛杉矶|台北|孟买|仁川|伦敦|巴黎|法兰克福|土耳其|流量|套餐|韩国|迪拜|德国|瑞士|澳大利亚|英国|台湾|印度)).)*$"}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "^((?!(直连|香港|新加坡|日本|东京|美国|芝加哥|洛杉矶|台北|孟买|仁川|伦敦|巴黎|法兰克福|土耳其|流量|套餐|韩国|迪拜|德国|瑞士|澳大利亚|英国|台湾|印度)).)*$"}
   - {name: 🔯 香港故转, type: fallback, interval: 300, proxies: [香港手动, 香港IEPL, 香港节点, SG备用, JP备用, US备用]}
   - {name: 🔯 故转, type: fallback, interval: 300, proxies: [🚀 手动切换, ♻️ 自动选择, 备用节点]}
   - {name: 🔯 游戏故转, type: fallback, interval: 300, proxies: [Game, JP备用, SG备用, 直连]}
@@ -165,28 +165,28 @@ proxy-groups:
   - {name: Ⓜ️ 微软服务, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
   - {name: 🍎 苹果服务, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
   - {name: 🎯 全球直连, type: select, proxies: [直连, 🚀 节点选择, ♻️ 自动选择, 🚀 手动切换]}
-  - {name: 香港节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)HKT|HK|Hong Kong|香港"}
-  - {name: 香港IEPL, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)IEPL SZ-HK|Extreme Hong Kong"}
-  - {name: SG备用, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)新加坡"}
-  - {name: JP备用, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)日本|东京"}
-  - {name: US备用, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)美国|芝加哥|洛杉矶"}
-  - {name: 备用节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)新加坡|日本|东京|美国|芝加哥|洛杉矶|香港"}
-  - {name: 狮城节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
-  - {name: 狮城IEPL, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)IEPL SZ-SG|Extreme Singapore"}
-  - {name: 美国节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)LA|US|USA|美国|芝加哥|洛杉矶"}
-  - {name: 美国IEPL, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)IEPL SZ-US|Extreme USA"}
-  - {name: 日本节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)JP|Japan|日本|东京"}
-  - {name: 台湾节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)台|新北|彰化|TW|Taiwan|Extreme Taiwan"}
-  - {name: Game, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)Gaming"}
-  - {name: 英国节点, type: smart, uselightgbm: false, collectdata: false, policy-priority: "Extreme:1.2;IEPL:1.1", include-all: true, strategy: round-robin, filter: "(?i)UK"}
-  - {name: 德国节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)DE"}
-  - {name: 澳洲节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)Australia"}
-  - {name: 法国节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)France"}
-  - {name: 越南节点, type: smart, uselightgbm: false, collectdata: false, include-all: true, strategy: round-robin, filter: "(?i)Vietnam"}
-  - {name: GPT节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Singapore:1.2;Taiwan:1.1", include-all: true, strategy: round-robin, filter: "(?i)ChatGPT"}
-  - {name: NF节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Hong Kong:1.2;Singapore:1.1", include-all: true, strategy: round-robin, filter: "(?i)NF HK|NF JP|NF SG|NF TW|NF UK|NF US"}
-  - {name: Disney节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Singapore:1.2;Taiwan:1.1", include-all: true, strategy: round-robin, filter: "(?i)Disney"}
-  - {name: Prime节点, type: smart, uselightgbm: true, collectdata: false, policy-priority: "Singapore:1.2", include-all: true, strategy: round-robin, filter: "(?i)Prime"}
+  - {name: 香港节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)HKT|HK|Hong Kong|香港"}
+  - {name: 香港IEPL, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)IEPL SZ-HK|Extreme Hong Kong"}
+  - {name: SG备用, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)新加坡"}
+  - {name: JP备用, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)日本|东京"}
+  - {name: US备用, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)美国|芝加哥|洛杉矶"}
+  - {name: 备用节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)新加坡|日本|东京|美国|芝加哥|洛杉矶|香港"}
+  - {name: 狮城节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
+  - {name: 狮城IEPL, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)IEPL SZ-SG|Extreme Singapore"}
+  - {name: 美国节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)LA|US|USA|美国|芝加哥|洛杉矶"}
+  - {name: 美国IEPL, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)IEPL SZ-US|Extreme USA"}
+  - {name: 日本节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)JP|Japan|日本|东京"}
+  - {name: 台湾节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)台|新北|彰化|TW|Taiwan|Extreme Taiwan"}
+  - {name: Game, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Gaming"}
+  - {name: 英国节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)UK"}
+  - {name: 德国节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)DE"}
+  - {name: 澳洲节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Australia"}
+  - {name: 法国节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)France"}
+  - {name: 越南节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Vietnam"}
+  - {name: GPT节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)ChatGPT"}
+  - {name: NF节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)NF HK|NF JP|NF SG|NF TW|NF UK|NF US"}
+  - {name: Disney节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Disney"}
+  - {name: Prime节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Prime"}
 
 # 规则匹配
 # 此规则部分没有做防泄露处理，因为弊严重大于利！
