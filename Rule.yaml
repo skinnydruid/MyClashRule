@@ -238,7 +238,7 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers: 
-  Gamelist: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/game.list"}
+  Gamelist: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/game.list?token=GHSAT0AAAAAADNZ3HKFM2CQQPFQKUGMBGIQ2IGJVTA"}
   PSNlist: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
   Epiclist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list"}
   Originlist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list"}
@@ -246,8 +246,8 @@ rule-providers:
   SteamCNlist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list"}
   Steamlist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list"}
   Nintendolist: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list"}
-  Directlite: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/Direct.list"}
-  ProxyLite: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/ProxyLite.list"}
+  Directlite: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/Direct.list?token=GHSAT0AAAAAADNZ3HKE4XCNRM4ZEIQHFGH42IGJUMA"}
+  ProxyLite: { <<: *class, url: "https://raw.githubusercontent.com/skinnydruid/MyClashRule/refs/heads/main/ProxyLite.list?token=GHSAT0AAAAAADNZ3HKFF6LDBNZVKBJOSXDM2IGJU2Q"}
   Huawei: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Huawei/Huawei.list"}
   LocalAreaNetwor: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"}
   UnBan: { <<: *class, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"}
