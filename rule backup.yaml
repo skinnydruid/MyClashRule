@@ -4,7 +4,7 @@
 # 机场订阅
 proxy-providers:
   Airport1:
-    url: "https://patriot.ninja//index.php?m=wray&token=grORRqiISZx1PeAmK3IK4iIH46woeM2Py3bRfbBAP3dZiLicYyYKpYsrqCwID7oX6vbTKFsGOb0%3D"
+    url: "***"
     type: http
     interval: 86400
     health-check:
@@ -13,25 +13,7 @@ proxy-providers:
       interval: 300
     proxy: 直连
   Airport2:
-    url: "https://patriot.ninja/subscribe/1781/MpN1zTcELkS/ssr/"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: http://connectivitycheck.platform.hicloud.com/generate_204
-      interval: 300
-    proxy: 直连
-  Airport3:
-    url: "https://sub.bbwwvip.org/subscribe/448507/S9rrUT2u8bk9"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: http://connectivitycheck.platform.hicloud.com/generate_204
-      interval: 300
-    proxy: 直连
-  Airport4:
-    url: "https://xn--cp3a08l.com/api/v1/client/subscribe?token=bb877f1490215e0f784fdf0a2eed1307"
+    url: "***"
     type: http
     interval: 86400
     health-check:
