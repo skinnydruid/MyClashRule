@@ -2,6 +2,7 @@
 
 # 域名后缀匹配
 # DOMAIN-SUFFIX,youtube.com
+DOMAIN-SUFFIX,patriot.ninja
 
 # 域名关键字匹配
 DOMAIN-KEYWORD,1e100
