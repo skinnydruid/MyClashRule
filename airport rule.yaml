@@ -160,7 +160,7 @@ proxy-groups:
   - {name: 德国节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)DE|德国|柏林"}
   - {name: 澳洲节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Australia|澳大利亚|悉尼|堪培拉"}
   - {name: 法国节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)France|法国|巴黎"}
-  - {name: GPT节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)ChatGPT"}
+  - {name: GPT节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)ChatGPT|GPT|AI"}
   - {name: NF节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)NF|netflix"}
   - {name: Disney节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Disney"}
   - {name: Prime节点, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?i)Prime"}
