@@ -101,7 +101,7 @@ dns:
 
 # 出站策略 smart参数 （ uselightgbm: false, collectdata: false, strategy: sticky-sessions,policy-priority: "Premium:0.9;SG:1.3" ）
 proxy-groups:
-  - {name: 🚀 节点选择, type: select, proxies: [🔯 故转, ♻️ 自动选择, 直连, 🚀 手动切换, 香港节点, 香港IEPL, 狮城节点, 狮城IEPL, 美国节点, 美国IEPL, 日本节点, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点, 越南节点]}
+  - {name: 🚀 节点选择, type: select, proxies: [🔯 故转, 🔯 香港故转, 🔯 狮城故转, 🔯 美国故转, 🔯 日本故转, 🔯 台湾故转, 🔯 英国故转, 🔯 德国故转, 🔯 澳洲故转, 🔯 法国故转, ♻️ 自动选择, 直连, 🚀 手动切换, 香港节点, 狮城节点, 美国节点, 日本节点, 台湾节点, 英国节点, 德国节点, 澳洲节点, 法国节点]}
   - {name: 🚀 手动切换, type: select, include-all: true}  
   - {name: 香港手动, type: select, include-all: true, filter: "(?i)HKT|HK|Hong Kong|香港"}
   - {name: 狮城手动, type: select, include-all: true, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
