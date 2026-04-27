@@ -6,6 +6,8 @@ DOMAIN-SUFFIX,time.windows.com
 
 # 域名关键字匹配
 DOMAIN-KEYWORD,baidu
+DOMAIN-KEYWORD,vip
+DOMAIN-KEYWORD,cdn
 
 # IP段匹配
 #IP-CIDR,*.*.*.*/32,no-resolve
