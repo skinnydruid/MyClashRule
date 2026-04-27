@@ -16,6 +16,8 @@ DOMAIN-KEYWORD,maowushi
 DOMAIN-KEYWORD,songdage
 DOMAIN-KEYWORD,fengbao
 DOMAIN-KEYWORD,yzzy
+DOMAIN-KEYWORD,play
+DOMAIN-KEYWORD,vod
 
 # IP段匹配
 #IP-CIDR,*.*.*.*/32,no-resolve
