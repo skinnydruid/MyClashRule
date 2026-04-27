@@ -8,6 +8,14 @@ DOMAIN-SUFFIX,time.windows.com
 DOMAIN-KEYWORD,baidu
 DOMAIN-KEYWORD,vip
 DOMAIN-KEYWORD,cdn
+DOMAIN-KEYWORD,fas
+DOMAIN-KEYWORD,songdage
+DOMAIN-KEYWORD,heyingjun
+DOMAIN-KEYWORD,modujx
+DOMAIN-KEYWORD,maowushi
+DOMAIN-KEYWORD,songdage
+DOMAIN-KEYWORD,fengbao
+DOMAIN-KEYWORD,yzzy
 
 # IP段匹配
 #IP-CIDR,*.*.*.*/32,no-resolve
